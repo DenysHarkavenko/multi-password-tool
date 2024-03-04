@@ -1,34 +1,59 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Avatar, Box, ChakraProvider, Flex, Heading } from '@chakra-ui/react'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <ChakraProvider>
+      <Box minH='100vh' bg='#26554F' display='flex' flexDirection='column'>
+        <Flex
+          as='header'
+          bg='#40827A'
+          minH='80px'
+          h='100%'
+          borderBottom='3px solid #1BDCD0'
+        >
+          <Box
+            maxW='300px'
+            w='100%'
+            borderRight='3px solid #1BDCD0'
+            minH='inherit'
+          >
+            asd
+          </Box>
+          <Flex
+            direction='row'
+            minH='100%'
+            w='100%'
+            alignItems='center'
+            p='0 50px'
+            justify='space-between'
+          >
+            <Heading color='#fff'>Multi-Password Tool</Heading>
+            {/* User profile */}
+            {/* <Flex>
+              <Heading>Nickname</Heading>
+              <Avatar />
+            </Flex> */}
+          </Flex>
+        </Flex>
+        <Flex flex='1' direction='row'>
+          <Box
+            maxW='300px'
+            w='100%'
+            bg='#40827A'
+            minH='100%'
+            borderRight='3px solid #1BDCD0'
+          >
+            asd
+            <br />
+            asd
+          </Box>
+          <Box flex='1'>Some Content</Box>
+        </Flex>
+        <Box bg='#40827A' borderTop='3px solid #1BDCD0'>
+          Hello
+        </Box>
+      </Box>
+    </ChakraProvider>
   )
 }
 
