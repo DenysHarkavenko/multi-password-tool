@@ -13,7 +13,7 @@ import {
   ModalFooter,
 } from '@chakra-ui/react'
 import React, { useRef, useState } from 'react'
-import Item from '../../types/Item'
+import Item from '../types/Item'
 
 interface CreateItemProps {
   addItem: (newItem: Item) => void
