@@ -1,45 +1,21 @@
-import { useState } from 'react'
 import { Flex, Box } from '@chakra-ui/react'
 import CreateItem from './CreateItem'
-import Item from '../types/Item'
 import ChangeItem from './ChangeItem'
 import ItemsList from './ItemsList'
 import SelectedItemDetails from './SelectedItemDetails'
+import useItemManagement from '../hooks/useItemManagement'
 
 const Main = (): JSX.Element => {
-  const [items, setItems]: [Item[], (items: Item[]) => void] = useState<Item[]>([]);
-  const [selectedItem, setSelectedItem] = useState<Item | null>(null)
-  const [isEditing, setIsEditing] = useState(false)
-
-  const addItem = (newItem: Item): void => {
-    setItems([...items, newItem])
-  }
-
-  const handleItemClick = (item: Item): void => {
-    setSelectedItem(item)
-    setIsEditing(false)
-  }
-
-  const handleEditClick = (): void => {
-    setIsEditing(true)
-  }
-
-  const handleDeleteItem = (item: Item): void => {
-    setItems(items.filter((i) => i !== item))
-    setSelectedItem(null)
-  }
-
-  const handleEditItem = (editedItem: Item): void => {
-    const updatedItems = items.map((item) => {
-      if (item === selectedItem) {
-        return editedItem
-      }
-      return item
-    })
-    setItems(updatedItems)
-    setSelectedItem(editedItem)
-    setIsEditing(false)
-  }
+  const {
+    items,
+    selectedItem,
+    isEditing,
+    addItem,
+    handleItemClick,
+    handleEditClick,
+    handleDeleteItem,
+    handleEditItem,
+  } = useItemManagement()
 
   return (
     <Flex flex='1' direction='row'>
@@ -69,7 +45,7 @@ const Main = (): JSX.Element => {
       </Box>
       <ChangeItem
         isOpen={isEditing}
-        onClose={() => setIsEditing(false)}
+        onClose={() => isEditing(false)}
         item={selectedItem}
         onSave={handleEditItem}
       />
