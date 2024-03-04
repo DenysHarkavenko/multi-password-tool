@@ -11,24 +11,24 @@ import {
   FormLabel,
   Input,
   ModalFooter,
-} from '@chakra-ui/react';
-import React, { useRef, useState } from 'react';
+} from '@chakra-ui/react'
+import React, { useRef, useState } from 'react'
 import Item from '../../types/Item'
 
 interface CreateItemProps {
-  addItem: (newItem: Item) => void;
+  addItem: (newItem: Item) => void
 }
 
 const CreateItem: React.FC<CreateItemProps> = ({ addItem }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
-  const initialRef = useRef<HTMLInputElement | null>(null);
-  const finalRef = useRef<HTMLInputElement | null>(null);
+  const initialRef = useRef<HTMLInputElement | null>(null)
+  const finalRef = useRef<HTMLInputElement | null>(null)
 
-  const [appName, setAppName] = useState('');
-  const [login, setLogin] = useState('');
-  const [mail, setMail] = useState('');
-  const [password, setPassword] = useState('');
+  const [appName, setAppName] = useState('')
+  const [login, setLogin] = useState('')
+  const [mail, setMail] = useState('')
+  const [password, setPassword] = useState('')
 
   const handleCreateItem = () => {
     const newItem: Item = {
@@ -36,10 +36,14 @@ const CreateItem: React.FC<CreateItemProps> = ({ addItem }) => {
       login: login,
       mail: mail,
       password: password,
-    };
-    addItem(newItem);
-    onClose();
-  };
+    }
+    addItem(newItem)
+    setAppName('')
+    setLogin('')
+    setMail('')
+    setPassword('')
+    onClose()
+  }
 
   return (
     <>
@@ -115,7 +119,7 @@ const CreateItem: React.FC<CreateItemProps> = ({ addItem }) => {
         </ModalContent>
       </Modal>
     </>
-  );
-};
+  )
+}
 
-export default CreateItem;
+export default CreateItem
