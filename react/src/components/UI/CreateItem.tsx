@@ -11,14 +11,36 @@ import {
   FormLabel,
   Input,
   ModalFooter,
-} from '@chakra-ui/react'
-import React from 'react'
+} from '@chakra-ui/react';
+import React, { useRef, useState } from 'react';
+import Item from '../../types/Item'
 
-const CreateItem = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+interface CreateItemProps {
+  addItem: (newItem: Item) => void;
+}
 
-  const initialRef = React.useRef(null)
-  const finalRef = React.useRef(null)
+const CreateItem: React.FC<CreateItemProps> = ({ addItem }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const initialRef = useRef<HTMLInputElement | null>(null);
+  const finalRef = useRef<HTMLInputElement | null>(null);
+
+  const [appName, setAppName] = useState('');
+  const [login, setLogin] = useState('');
+  const [mail, setMail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleCreateItem = () => {
+    const newItem: Item = {
+      appName: appName,
+      login: login,
+      mail: mail,
+      password: password,
+    };
+    addItem(newItem);
+    onClose();
+  };
+
   return (
     <>
       <Button
@@ -49,6 +71,8 @@ const CreateItem = () => {
                 ref={initialRef}
                 placeholder='GitHub'
                 _placeholder={{ color: '#4A4A4A' }}
+                value={appName}
+                onChange={(e) => setAppName(e.target.value)}
               />
             </FormControl>
 
@@ -57,6 +81,8 @@ const CreateItem = () => {
               <Input
                 placeholder='username123123'
                 _placeholder={{ color: '#4A4A4A' }}
+                value={login}
+                onChange={(e) => setLogin(e.target.value)}
               />
             </FormControl>
 
@@ -65,6 +91,8 @@ const CreateItem = () => {
               <Input
                 placeholder='example@gmail.com'
                 _placeholder={{ color: '#4A4A4A' }}
+                value={mail}
+                onChange={(e) => setMail(e.target.value)}
               />
             </FormControl>
 
@@ -73,19 +101,21 @@ const CreateItem = () => {
               <Input
                 placeholder='password_219!'
                 _placeholder={{ color: '#4A4A4A' }}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </FormControl>
           </ModalBody>
 
           <ModalFooter>
-            <Button onClick={onClose} bg='#fff'>
+            <Button onClick={handleCreateItem} bg='#fff'>
               Create item
             </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
     </>
-  )
-}
+  );
+};
 
-export default CreateItem
+export default CreateItem;
