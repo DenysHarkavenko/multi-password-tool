@@ -30,12 +30,22 @@ const CreateItem: React.FC<CreateItemProps> = ({ addItem }) => {
   const [mail, setMail] = useState('')
   const [password, setPassword] = useState('')
 
+  const getCurrentDate = () => {
+    const currentDate = new Date()
+    const day = String(currentDate.getDate()).padStart(2, '0')
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0')
+    const year = currentDate.getFullYear()
+    return `${day}.${month}.${year}`
+  }
+
   const handleCreateItem = () => {
     const newItem: Item = {
       appName: appName,
       login: login,
       mail: mail,
       password: password,
+      createdAt: getCurrentDate(),
+      wasChangedAt: getCurrentDate(),
     }
     addItem(newItem)
     setAppName('')

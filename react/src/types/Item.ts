@@ -3,5 +3,7 @@ export default interface Item {
     login: string
     mail: string
     password: string
+    createdAt: string
+    wasChangedAt: string
 }
 
