@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 import {
   Button,
   Modal,
@@ -11,42 +11,46 @@ import {
   FormLabel,
   Input,
   ModalFooter,
-} from '@chakra-ui/react';
-import Item from '../types/Item';
+} from '@chakra-ui/react'
+import Item from '../types/Item'
 
 interface ChangeItemProps {
-  isOpen: boolean;
-  onClose: () => void;
-  item: Item | null;
-  onSave: (editedItem: Item) => void;
+  isOpen: boolean
+  onClose: () => void
+  item: Item | null
+  onSave: (editedItem: Item) => void
 }
 
-const ChangeItem: React.FC<ChangeItemProps> = ({ isOpen, onClose, item, onSave }) => {
-  const [editedItem, setEditedItem] = useState<Item | null>(null);
+const ChangeItem: React.FC<ChangeItemProps> = ({
+  isOpen,
+  onClose,
+  item,
+  onSave,
+}) => {
+  const [editedItem, setEditedItem] = useState<Item | null>(null)
 
   useEffect(() => {
-    setEditedItem(item);
-  }, [item]);
+    setEditedItem(item)
+  }, [item])
 
   const handleEditItem = (): void => {
     if (editedItem) {
-      onSave(editedItem);
-      onClose();
+      onSave(editedItem)
+      onClose()
     }
-  };
+  }
 
   const handleChange = (key: keyof Item, value: string): void => {
     if (editedItem) {
-      setEditedItem({ ...editedItem, [key]: value });
+      setEditedItem({ ...editedItem, [key]: value })
     }
-  };
+  }
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent bg='#40827A' color='#fff'>
         <ModalHeader>Edit item</ModalHeader>
-        <ModalCloseButton />
         <ModalBody pb={6}>
           <FormControl>
             <FormLabel>App name</FormLabel>
@@ -92,7 +96,7 @@ const ChangeItem: React.FC<ChangeItemProps> = ({ isOpen, onClose, item, onSave }
         </ModalFooter>
       </ModalContent>
     </Modal>
-  );
-};
+  )
+}
 
-export default ChangeItem;
+export default ChangeItem

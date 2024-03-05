@@ -47,6 +47,9 @@ const CreateItem: React.FC<CreateItemProps> = ({ addItem }) => {
       createdAt: getCurrentDate(),
       wasChangedAt: getCurrentDate(),
     }
+    if (!appName || !password || !mail) {
+      return;
+    }
     addItem(newItem)
     setAppName('')
     setLogin('')
@@ -80,7 +83,7 @@ const CreateItem: React.FC<CreateItemProps> = ({ addItem }) => {
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl>
-              <FormLabel>App name</FormLabel>
+              <FormLabel>App name*</FormLabel>
               <Input
                 ref={initialRef}
                 placeholder='GitHub'
@@ -101,7 +104,7 @@ const CreateItem: React.FC<CreateItemProps> = ({ addItem }) => {
             </FormControl>
 
             <FormControl mt={4}>
-              <FormLabel>Mail</FormLabel>
+              <FormLabel>Mail*</FormLabel>
               <Input
                 placeholder='example@gmail.com'
                 _placeholder={{ color: '#4A4A4A' }}
@@ -111,7 +114,7 @@ const CreateItem: React.FC<CreateItemProps> = ({ addItem }) => {
             </FormControl>
 
             <FormControl mt={4}>
-              <FormLabel>Password</FormLabel>
+              <FormLabel>Password*</FormLabel>
               <Input
                 placeholder='password_219!'
                 _placeholder={{ color: '#4A4A4A' }}
