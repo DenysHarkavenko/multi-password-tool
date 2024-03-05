@@ -1,9 +1,9 @@
-import { Flex, Box } from '@chakra-ui/react'
-import CreateItem from './CreateItem'
-import ChangeItem from './ChangeItem'
-import ItemsList from './ItemsList'
-import SelectedItemDetails from './SelectedItemDetails'
-import useItemManagement from '../hooks/useItemManagement'
+import { Flex, Box } from '@chakra-ui/react';
+import CreateItem from './CreateItem';
+import ChangeItem from './ChangeItem';
+import ItemsList from './ItemsList';
+import SelectedItemDetails from './SelectedItemDetails';
+import useItemManagement from '../hooks/useItemManagement';
 
 const Main = (): JSX.Element => {
   const {
@@ -15,7 +15,7 @@ const Main = (): JSX.Element => {
     handleEditClick,
     handleDeleteItem,
     handleEditItem,
-  } = useItemManagement()
+  } = useItemManagement();
 
   return (
     <Flex flex='1' direction='row'>
@@ -50,7 +50,7 @@ const Main = (): JSX.Element => {
         onSave={handleEditItem}
       />
     </Flex>
-  )
-}
+  );
+};
 
-export default Main
+export default Main;
